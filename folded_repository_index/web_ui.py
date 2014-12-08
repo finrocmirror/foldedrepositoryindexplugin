@@ -53,5 +53,6 @@ class FoldedRepositoryIndex(Component):
         if not match:
             return stream
 
-        filter = Transformer('//script[@src="/chrome/common/js/expand_dir.js"]')
+        script_url = req.href('/chrome/common/js/expand_dir.js')
+        filter = Transformer('//script[@src="' + script_url + '"]')
         return stream | filter.remove()
